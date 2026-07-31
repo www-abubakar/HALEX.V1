@@ -1,83 +1,53 @@
 import { app } from "./firebase.js";
 
-import { 
+import {
   getAuth,
   createUserWithEmailAndPassword
 } from "https://www.gstatic.com/firebasejs/12.1.0/firebase-auth.js";
 
-
 const auth = getAuth(app);
 
-
-// FAQ Code
-
+// FAQ
 const faqItems = document.querySelectorAll(".faq-item");
 
-faqItems.forEach(item => {
+faqItems.forEach((item) => {
+  const button = item.querySelector(".faq-question");
 
-    const button = item.querySelector(".faq-question");
-
-    if(button){
-
-        button.addEventListener("click", () => {
-
-            item.classList.toggle("active");
-
-        });
-
-    }
-
+  if (button) {
+    button.addEventListener("click", () => {
+      item.classList.toggle("active");
+    });
+  }
 });
 
-
-// Signup Code
-
+// Signup Form
 const signupForm = document.getElementById("signupForm");
 
+if (signupForm) {
+  signupForm.addEventListener("submit", async (e) => {
+    e.preventDefault();
 
-if(signupForm){
+    const email = document.getElementById("email").value.trim();
+    const password = document.getElementById("password").value;
+    const confirmPassword = document.getElementById("confirmPassword").value;
 
-signupForm.addEventListener("submit", (e)=>{
+    if (password !== confirmPassword) {
+      alert("Passwords do not match");
+      return;
+    }
 
-e.preventDefault();
+    try {
+      await createUserWithEmailAndPassword(auth, email, password);
 
+      alert("Account created successfully 🎉");
 
-const email = document.getElementById("email").value;
+      window.location.href = "dashboard.html";
 
-const password = document.getElementById("password").value;
-
-const confirmPassword = document.getElementById("confirmPassword").value;
-
-
-if(password !== confirmPassword){
-
-alert("Password match nahi kar raha");
-
-return;
-
+    } catch (error) {
+      console.error(error);
+      alert(error.message);
+    }
+  });
 }
 
-
-createUserWithEmailAndPassword(auth,email,password)
-
-.then(()=>{
-
-alert("Account successfully created 🎉");
-
-window.location.href="dashboard.html";
-
-})
-
-.catch((error)=>{
-
-alert(error.message);
-
-});
-
-
-});
-
-}
-
-
-console.log("Firebase connected", app);
+console.log("Firebase Connected ✅");
