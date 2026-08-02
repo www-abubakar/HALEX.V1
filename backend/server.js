@@ -71,3 +71,43 @@ const PORT = process.env.PORT || 3000;
 app.listen(PORT, () => {
   console.log(`🚀 Server running on port ${PORT}`);
 });
+app.post("/summarize", async (req, res) => {
+  try {
+    const { notes } = req.body;
+
+    const response = await fetch(
+      "https://openrouter.ai/api/v1/chat/completions",
+      {
+        method: "POST",
+        headers: {
+          "Authorization": `Bearer ${process.env.OPENROUTER_API_KEY}`,
+          "Content-Type": "application/json"
+        },
+        body: JSON.stringify({
+          model: "openrouter/auto",
+          messages: [
+            {
+              role: "system",
+              content: "You are an expert teacher. Summarize notes into easy bullet points."
+            },
+            {
+              role: "user",
+              content: notes
+            }
+          ]
+        })
+      }
+    );
+
+    const data = await response.json();
+
+    res.json({
+      summary: data.choices[0].message.content
+    });
+
+  } catch (error) {
+    res.status(500).json({
+      error: "Server Error"
+    });
+  }
+});
