@@ -1,165 +1,159 @@
-import express from "express";
-import cors from "cors";
-import dotenv from "dotenv";
-
-dotenv.config();
-
-const app = express();
-
-app.use(cors());
-app.use(express.json());
+// =================================
+// STUDYAI SCRIPT.JS
+// Version 2.0
+// =================================
 
 
-app.get("/", (req, res) => {
-  res.send("StudyAI Backend is Running ✅");
-});
+// Firebase Import
+import { app } from "./firebase.js";
+
+import {
+  getAuth,
+  createUserWithEmailAndPassword
+} from "https://www.gstatic.com/firebasejs/12.1.0/firebase-auth.js";
 
 
-// AI Tutor Chat
-app.post("/chat", async (req, res) => {
+const auth = getAuth(app);
 
-  try {
-
-    const { message } = req.body;
+console.log("Firebase Connected ✅");
 
 
-    const response = await fetch(
-      "https://openrouter.ai/api/v1/chat/completions",
-      {
-        method: "POST",
 
-        headers: {
-          "Authorization": `Bearer ${process.env.OPENROUTER_API_KEY}`,
-          "Content-Type": "application/json",
-          "HTTP-Referer": "https://halex-v1.onrender.com",
-          "X-Title": "StudyAI"
-        },
+// =================================
+// MOBILE MENU
+// =================================
 
-        body: JSON.stringify({
-
-          model: "openrouter/auto",
-
-          messages: [
-            {
-              role: "user",
-              content: message
-            }
-          ]
-
-        })
-
-      }
-    );
+const menuBtn = document.querySelector(".menu-btn");
+const navMenu = document.querySelector(".nav-menu");
 
 
-    const data = await response.json();
+if(menuBtn && navMenu){
 
+    menuBtn.addEventListener("click",()=>{
 
-    res.json({
-
-      reply:
-      data.choices[0].message.content
+        navMenu.classList.toggle("active");
 
     });
 
+}
 
-  } catch(error){
 
-    console.error(error);
 
-    res.status(500).json({
-      error:"Server Error"
-    });
+// =================================
+// FAQ SECTION
+// =================================
 
-  }
+const faqItems = document.querySelectorAll(".faq-item");
+
+
+faqItems.forEach((item)=>{
+
+
+    const question = item.querySelector(".faq-question");
+
+
+    if(question){
+
+        question.addEventListener("click",()=>{
+
+            item.classList.toggle("active");
+
+        });
+
+    }
+
 
 });
 
 
 
 
-// Notes + PDF Summary
-app.post("/summarize", async (req,res)=>{
+// =================================
+// SIGNUP SYSTEM
+// =================================
+
+const signupForm = document.getElementById("signupForm");
+
+
+if(signupForm){
+
+
+signupForm.addEventListener("submit", async(e)=>{
+
+
+e.preventDefault();
+
+
+
+const email =
+document.getElementById("email").value.trim();
+
+
+const password =
+document.getElementById("password").value;
+
+
+const confirmPassword =
+document.getElementById("confirmPassword").value;
+
+
+
+
+if(password !== confirmPassword){
+
+alert("Passwords do not match ❌");
+
+return;
+
+}
+
+
+
+
+if(password.length < 6){
+
+alert("Password must be at least 6 characters");
+
+return;
+
+}
+
+
 
 
 try{
 
 
-const { notes } = req.body;
-
-
-const response = await fetch(
-
-"https://openrouter.ai/api/v1/chat/completions",
-
-{
-
-method:"POST",
-
-headers:{
-
-"Authorization":
-`Bearer ${process.env.OPENROUTER_API_KEY}`,
-
-"Content-Type":"application/json"
-
-},
-
-body:JSON.stringify({
-
-model:"openrouter/auto",
-
-messages:[
-
-{
-
-role:"system",
-
-content:
-"You are an expert teacher. Summarize into simple bullet points."
-
-},
-
-{
-
-role:"user",
-
-content:notes
-
-}
-
-]
-
-})
-
-}
-
+await createUserWithEmailAndPassword(
+auth,
+email,
+password
 );
 
 
 
-const data = await response.json();
+alert("Account created successfully 🎉");
 
 
 
-res.json({
-
-summary:
-data.choices[0].message.content
-
-});
+window.location.href="dashboard.html";
 
 
 
-}catch(error){
+}
+
+catch(error){
 
 
 console.error(error);
 
 
-res.status(500).json({
+alert(error.message);
 
-error:"Server Error"
+
+}
+
+
 
 });
 
@@ -167,117 +161,120 @@ error:"Server Error"
 }
 
 
-});
 
 
 
+// =================================
+// SMOOTH SCROLL
+// =================================
 
 
-// Quiz Generator
-app.post("/quiz", async(req,res)=>{
+const links = document.querySelectorAll("a[href^='#']");
 
 
-try{
+links.forEach((link)=>{
 
 
-const { topic } = req.body;
+link.addEventListener("click",(e)=>{
 
 
-const response = await fetch(
-
-"https://openrouter.ai/api/v1/chat/completions",
-
-{
-
-method:"POST",
-
-headers:{
-
-"Authorization":
-`Bearer ${process.env.OPENROUTER_API_KEY}`,
-
-"Content-Type":"application/json"
-
-},
-
-body:JSON.stringify({
-
-model:"openrouter/auto",
-
-messages:[
-
-{
-
-role:"system",
-
-content:
-
-"Create exactly 10 multiple-choice questions with 4 options each. Mention correct answer after every question."
-
-},
-
-{
-
-role:"user",
-
-content:
-
-`Generate a quiz about: ${topic}`
-
-}
-
-]
-
-})
-
-}
-
-);
+e.preventDefault();
 
 
 
-const data = await response.json();
+const section =
+document.querySelector(link.getAttribute("href"));
 
 
 
-res.json({
+if(section){
 
-quiz:
-data.choices[0].message.content
+section.scrollIntoView({
+
+behavior:"smooth"
 
 });
-
-
-
-}catch(error){
-
-
-console.error(error);
-
-
-res.status(500).json({
-
-error:"Server Error"
-
-});
-
 
 }
 
 
+
+});
+
+
 });
 
 
 
 
 
-const PORT = process.env.PORT || 3000;
+// =================================
+// BUTTON CLICK EFFECT
+// =================================
 
 
-app.listen(PORT,()=>{
+const buttons =
+document.querySelectorAll("button");
 
-console.log(
-`🚀 Server running on port ${PORT}`
-);
+
+
+buttons.forEach((btn)=>{
+
+
+btn.addEventListener("click",()=>{
+
+
+btn.style.transform="scale(0.95)";
+
+
+
+setTimeout(()=>{
+
+
+btn.style.transform="scale(1)";
+
+
+},150);
+
+
 
 });
+
+
+});
+
+
+
+
+
+// =================================
+// PAGE LOAD ANIMATION
+// =================================
+
+
+window.addEventListener("load",()=>{
+
+
+document.body.classList.add("loaded");
+
+
+});
+
+
+
+
+
+// =================================
+// CURRENT YEAR FOOTER
+// =================================
+
+
+const year =
+document.getElementById("year");
+
+if(year){
+
+year.textContent =
+new Date().getFullYear();
+
+}
