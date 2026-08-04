@@ -1,6 +1,7 @@
 import express from "express";
 import cors from "cors";
 import dotenv from "dotenv";
+import { GoogleGenerativeAI } from "@google/generative-ai";
 
 dotenv.config();
 
@@ -9,246 +10,147 @@ const app = express();
 app.use(cors());
 app.use(express.json());
 
+const genAI = new GoogleGenerativeAI(process.env.GEMINI_API_KEY);
 
-app.get("/", (req,res)=>{
-    res.send("StudyAI Backend is Running ✅");
+app.get("/", (req, res) => {
+  res.send("StudyAI Backend is Running ✅");
 });
 
+async function geminiAI(prompt) {
+  try {
+    const model = genAI.getGenerativeModel({
+      model: "gemini-2.5-flash"
+    });
 
+    const result = await model.generateContent(prompt);
 
-async function openRouterAI(messages){
+    const response = result.response;
 
-    const response = await fetch(
-        "https://openrouter.ai/api/v1/chat/completions",
-        {
-            method:"POST",
+    return response.text();
 
-            headers:{
-                "Authorization":
-                `Bearer ${process.env.OPENROUTER_API_KEY}`,
-
-                "Content-Type":"application/json",
-
-                "HTTP-Referer":
-                "https://halex-v1.onrender.com",
-
-                "X-Title":"StudyAI"
-            },
-
-            body:JSON.stringify({
-
-                model: "deepseek/deepseek-chat-v3.1:free",
-
-                messages:messages
-
-            })
-        }
-    );
-
-
-    const data = await response.json();
-
-console.log(JSON.stringify(data, null, 2));
-  
-    if(!response.ok){
-
-        console.log("OpenRouter Error:",data);
-
-        throw new Error(
-            data.error?.message || "AI Error"
-        );
-
-    }
-
-
-if (!data.choices || !data.choices.length) {
-  throw new Error(JSON.stringify(data));
+  } catch (error) {
+    console.error("Gemini Error:", error);
+    throw new Error("AI Server Error");
+  }
 }
-
-return data.choices[0].message.content;
-
-}
-
-
-
-
 
 // ===============================
 // AI TUTOR CHAT
 // ===============================
 
-app.post("/chat",async(req,res)=>{
+app.post("/chat", async (req, res) => {
+  try {
+    const { message } = req.body;
 
-try{
+    if (!message) {
+      return res.status(400).json({
+        error: "Message is required"
+      });
+    }
 
+    const reply = await geminiAI(message);
 
-const {message}=req.body;
+    res.json({
+      reply
+    });
 
+  } catch (error) {
+    console.error(error);
 
-const reply = await openRouterAI([
-
-{
-role:"user",
-content:message
-}
-
-]);
-
-
-res.json({
-reply:reply
+    res.status(500).json({
+      error: error.message
+    });
+  }
 });
-
-
-}catch(error){
-
-console.log(error);
-
-res.status(500).json({
-
-error:error.message
-
-});
-
-}
-
-});
-
-
-
-
 
 // ===============================
 // NOTES SUMMARY
 // ===============================
 
+app.post("/summarize", async (req, res) => {
+  try {
 
-app.post("/summarize",async(req,res)=>{
+    const { notes } = req.body;
 
-try{
+    if (!notes) {
+      return res.status(400).json({
+        error: "Notes are required"
+      });
+    }
 
+    const prompt = `
+You are an expert teacher.
 
-const {notes}=req.body;
+Summarize these notes into simple bullet points.
 
+Notes:
+${notes}
+`;
 
-const summary = await openRouterAI([
+    const summary = await geminiAI(prompt);
 
-{
-role:"system",
-content:
-"You are an expert teacher. Summarize notes into simple bullet points."
-},
+    res.json({
+      summary
+    });
 
-{
-role:"user",
-content:notes
-}
+  } catch (error) {
 
-]);
+    console.error(error);
 
+    res.status(500).json({
+      error: error.message
+    });
 
-res.json({
-
-summary:summary
-
+  }
 });
-
-
-}catch(error){
-
-console.log(error);
-
-res.status(500).json({
-
-error:error.message
-
-});
-
-}
-
-});
-
-
-
-
-
 
 // ===============================
 // QUIZ GENERATOR
 // ===============================
 
+app.post("/quiz", async (req, res) => {
+  try {
 
-app.post("/quiz",async(req,res)=>{
+    const { topic } = req.body;
 
-try{
+    if (!topic) {
+      return res.status(400).json({
+        error: "Topic is required"
+      });
+    }
 
+    const prompt = `
+Create exactly 10 multiple choice questions about "${topic}".
 
-const {topic}=req.body;
+Rules:
+- Each question must have 4 options (A, B, C, D).
+- Mention the correct answer after each question.
+- Keep the language simple for students.
+`;
 
+    const quiz = await geminiAI(prompt);
 
-const quiz = await openRouterAI([
+    res.json({
+      quiz
+    });
 
+  } catch (error) {
 
-{
-role:"system",
+    console.error(error);
 
-content:
+    res.status(500).json({
+      error: error.message
+    });
 
-"Create exactly 10 multiple choice questions. Each question must have 4 options and mention correct answer."
-},
-
-
-{
-role:"user",
-
-content:
-
-`Generate quiz about ${topic}`
-
-}
-
-
-]);
-
-
-
-res.json({
-
-quiz:quiz
-
+  }
 });
 
-
-
-}catch(error){
-
-
-console.log(error);
-
-
-res.status(500).json({
-
-error:error.message
-
-});
-
-
-}
-
-
-});
-
-
-
-
+// ===============================
+// START SERVER
+// ===============================
 
 const PORT = process.env.PORT || 3000;
 
-
-app.listen(PORT,()=>{
-
-console.log(
-`🚀 Server running on port ${PORT}`
-);
-
+app.listen(PORT, () => {
+  console.log(`🚀 StudyAI Backend Running on Port ${PORT}`);
 });
