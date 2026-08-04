@@ -37,7 +37,7 @@ async function openRouterAI(messages){
 
             body:JSON.stringify({
 
-                model:"openrouter/auto",
+                model: "deepseek/deepseek-chat-v3.1:free",
 
                 messages:messages
 
