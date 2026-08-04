@@ -1,164 +1,1855 @@
+<!--==================================================
+    STUDYAI PREMIUM AI DASHBOARD
+    COMPLETE REDESIGN
+    HTML PART 1
+==================================================-->
+
 <!DOCTYPE html>
 <html lang="en">
 
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Dashboard | StudyAI</title>
 
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<meta charset="UTF-8">
 
-  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-  <link rel="stylesheet" href="../style.css">
+
+<title>StudyAI | Dashboard</title>
+
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
+
+<link rel="stylesheet"
+href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
+
+
+<link rel="stylesheet" href="../css/dashboard.css">
+
+
 </head>
+
 
 <body>
 
-<div class="dashboard">
 
-  <!-- Sidebar -->
-  <aside class="sidebar">
 
-    <h2>🎓 StudyAI</h2>
+<div class="app">
 
-    <ul>
 
-      
 
-      <li><a href="ai-tutor.html">🤖 AI Tutor</a></li>
+<!--==============================
+ SIDEBAR
+==============================-->
 
-      <li><a href="notes.html">📝 Notes</a></li>
 
-      <li><a href="quiz.html">🧠 Quiz</a></li>
 
-      <li><a href="pdf.html">📚 Previous Papers</a></li>
+<aside class="sidebar">
 
-      <li><a href="#">📈 Progress</a></li>
 
-      <li><a href="profile.html">👤 Profile</a></li>
 
-      <li><a href="#">⚙️ Settings</a></li>
+<div class="brand">
 
-    </ul>
 
-  </aside>
 
-  <!-- Main Content -->
-  <main class="main-content">
+<div class="brand-logo">
 
-    <!-- Top Bar -->
-    <div class="topbar">
-
-      <h1>Welcome Back 👋</h1>
-      <div class="stats">
-
-  <div class="stat-card">
-    <h2 id="chatCount">0</h2>
-    <p>💬 AI Chats</p>
-  </div>
-
-  <div class="stat-card">
-    <h2 id="quizCount">0</h2>
-    <p>🧠 Quiz Attempts</p>
-  </div>
-
-  <div class="stat-card">
-    <h2 id="notesCount">0</h2>
-    <p>📝 Notes</p>
-  </div>
-
-      </div>
-
-      <div class="profile">
-
-        <p id="userEmail">Loading...</p>
-
-        <button id="logoutBtn">
-          Logout
-        </button>
-
-      </div>
-
-    </div>
-
-    <!-- Cards -->
-    <div class="cards">
-
-      <!-- AI Tutor -->
-      <div class="card">
-
-        <h3>🤖 AI Tutor</h3>
-
-        <p>Ask anything instantly.</p>
-
-        <a href="ai-tutor.html">
-          <button>Open</button>
-        </a>
-
-      </div>
-
-      <!-- Notes -->
-      <div class="card">
-
-        <h3>📝 Notes</h3>
-
-        <p>Summarize long notes.</p>
-
-        <a href="notes.html">
-          <button>Open</button>
-        </a>
-
-      </div>
-
-      <!-- Quiz -->
-      <div class="card">
-
-        <h3>🧠 Quiz</h3>
-
-        <p>Create AI quizzes.</p>
-
-        <a href="quiz.html">
-          <button>Open</button>
-        </a>
-
-      </div>
-
-      <!-- Previous Papers -->
-      <div class="card">
-
-        <h3>📚 Previous Papers</h3>
-
-        <p>Download previous papers.</p>
-
-        <a href="pdf.html">
-          <button>Open</button>
-        </a>
-
-      </div>
-
-    </div>
-
-    <!-- Chat History -->
-    <div class="chat-history">
-
-      <h2>📚 My Chat History</h2>
-      <button id="deleteAllBtn">
-🗑 Delete All Chats
-      </button>
-
-      <div id="historyBox">
-        Loading chats...
-      </div>
-
-    </div>
-
-  </main>
+<i class="fas fa-brain"></i>
 
 </div>
 
+
+
+<div>
+
+<h2>
+StudyAI
+</h2>
+
+
+<p>
+AI Learning Space
+</p>
+
+
+</div>
+
+
+
+</div>
+
+
+
+
+
+
+
+
+<nav class="side-nav">
+
+
+
+<p class="nav-title">
+
+MENU
+
+</p>
+
+
+
+<a href="dashboard.html" class="active">
+
+<i class="fas fa-grid-2"></i>
+
+<span>
+Dashboard
+</span>
+
+</a>
+
+
+
+
+<a href="ai-tutor.html">
+
+<i class="fas fa-robot"></i>
+
+<span>
+AI Tutor
+</span>
+
+</a>
+
+
+
+
+
+<a href="notes.html">
+
+<i class="fas fa-file-lines"></i>
+
+<span>
+Smart Notes
+</span>
+
+</a>
+
+
+
+
+
+<a href="quiz.html">
+
+<i class="fas fa-brain"></i>
+
+<span>
+AI Quiz
+</span>
+
+</a>
+
+
+
+
+
+<a href="pdf.html">
+
+<i class="fas fa-book-open"></i>
+
+<span>
+Papers
+</span>
+
+</a>
+
+
+
+
+
+
+<p class="nav-title second">
+
+ACCOUNT
+
+</p>
+
+
+
+
+<a href="profile.html">
+
+<i class="fas fa-user"></i>
+
+<span>
+Profile
+</span>
+
+</a>
+
+
+
+
+
+<a href="#">
+
+<i class="fas fa-gear"></i>
+
+<span>
+Settings
+</span>
+
+</a>
+
+
+
+
+
+</nav>
+
+
+
+
+
+
+
+
+
+<!-- USER PROFILE -->
+
+
+<div class="sidebar-user">
+
+
+
+<div class="user-avatar">
+
+<i class="fas fa-user"></i>
+
+</div>
+
+
+
+
+<div class="user-details">
+
+
+<strong id="userEmail">
+
+Loading...
+
+</strong>
+
+
+<span>
+
+Student
+
+</span>
+
+
+</div>
+
+
+
+
+
+<button id="logoutBtn">
+
+<i class="fas fa-right-from-bracket"></i>
+
+</button>
+
+
+
+</div>
+
+
+
+
+
+</aside>
+
+
+
+
+
+
+
+
+
+
+<!--==============================
+ MAIN WORKSPACE
+==============================-->
+
+
+
+<main class="workspace">
+
+
+
+
+
+
+<!-- TOP HEADER -->
+
+
+<header class="main-header">
+
+
+
+<div class="header-left">
+
+
+
+<button class="menu-toggle" id="menuToggle">
+
+<i class="fas fa-bars"></i>
+
+</button>
+
+
+
+
+<div>
+
+
+<h1 id="welcomeText">
+
+Good Evening 👋
+
+</h1>
+
+
+<p>
+
+Ready to continue learning?
+
+</p>
+
+
+
+</div>
+
+
+
+</div>
+
+
+
+
+
+
+
+
+<div class="header-actions">
+
+
+
+
+
+<div class="global-search">
+<!-- GLOBAL AI SEARCH RESULTS -->
+<div id="searchResults" class="search-results">
+
+    <div class="search-title">
+        AI Search
+    </div>
+
+</div>
+
+<i class="fas fa-search"></i>
+
+
+<input
+
+id="searchInput"
+
+type="text"
+
+placeholder="Search anything..."
+
+>
+
+
+</div>
+
+
+
+
+
+
+
+<button class="notification">
+
+
+<i class="fas fa-bell"></i>
+
+
+<span></span>
+
+
+</button>
+
+
+
+
+
+<div class="profile-mini">
+
+
+<div class="mini-avatar">
+
+<i class="fas fa-user"></i>
+
+</div>
+
+
+</div>
+
+
+
+
+
+
+</div>
+
+
+
+</header>
+
+
+
+
+
+<!-- PART 2 CONTINUE -->
+  <!--==================================================
+    STUDYAI PREMIUM AI DASHBOARD
+    HERO + INSIGHTS
+    HTML PART 2
+==================================================-->
+
+
+
+<!--==============================
+ PREMIUM HERO SECTION
+==============================-->
+
+
+
+<section class="hero-dashboard">
+
+
+
+
+
+<div class="hero-content">
+
+
+
+<div class="hero-tag">
+
+
+<i class="fas fa-sparkles"></i>
+
+
+AI Powered Learning
+
+
+</div>
+
+
+
+
+
+
+
+<h2>
+
+
+Learn smarter with your personal AI tutor 🚀
+
+
+</h2>
+
+
+
+
+
+<p>
+
+
+Ask questions, create notes, practice quizzes and improve your knowledge with AI.
+
+
+</p>
+
+
+
+
+
+
+
+<div class="hero-buttons">
+
+
+
+<a href="ai-tutor.html" class="primary-action">
+
+
+Start Learning
+
+
+<i class="fas fa-arrow-right"></i>
+
+
+</a>
+
+
+
+
+
+<a href="quiz.html" class="secondary-action">
+
+
+Practice Quiz
+
+
+</a>
+
+
+
+
+</div>
+
+
+
+
+
+</div>
+
+
+
+
+
+
+
+
+<!-- AI VISUAL CARD -->
+
+
+<div class="ai-visual">
+
+
+
+
+
+<div class="ai-circle">
+
+
+<i class="fas fa-brain"></i>
+
+
+</div>
+
+
+
+
+
+
+
+<div class="floating-card card-one">
+
+
+<i class="fas fa-fire"></i>
+
+
+<div>
+
+<strong>
+
+7 Days
+
+</strong>
+
+
+<span>
+
+Learning Streak
+
+</span>
+
+
+</div>
+
+
+</div>
+
+
+
+
+
+
+
+<div class="floating-card card-two">
+
+
+<i class="fas fa-chart-line"></i>
+
+
+<div>
+
+<strong>
+
+85%
+
+</strong>
+
+
+<span>
+
+Progress
+
+</span>
+
+
+</div>
+
+
+</div>
+
+
+
+
+
+
+</div>
+
+
+
+
+
+</section>
+
+
+
+
+
+
+
+
+
+<!--==============================
+ LEARNING INSIGHTS
+==============================-->
+
+
+
+<section class="insights-grid">
+
+
+
+
+
+
+
+<div class="insight-card">
+
+
+
+<div class="insight-icon blue">
+
+
+<i class="fas fa-comments"></i>
+
+
+</div>
+
+
+
+<div>
+
+
+<h3 id="chatCount">
+
+0
+
+</h3>
+
+
+<p>
+
+AI Conversations
+
+</p>
+
+
+</div>
+
+
+
+</div>
+
+
+
+
+
+
+
+
+
+<div class="insight-card">
+
+
+
+<div class="insight-icon purple">
+
+
+<i class="fas fa-brain"></i>
+
+
+</div>
+
+
+
+<div>
+
+
+<h3 id="quizCount">
+
+0
+
+</h3>
+
+
+<p>
+
+Quiz Attempts
+
+</p>
+
+
+</div>
+
+
+
+</div>
+
+
+
+
+
+
+
+
+<div class="insight-card">
+
+
+
+<div class="insight-icon green">
+
+
+<i class="fas fa-note-sticky"></i>
+
+
+</div>
+
+
+
+<div>
+
+
+<h3 id="notesCount">
+
+0
+
+</h3>
+
+
+<p>
+
+Smart Notes
+
+</p>
+
+
+</div>
+
+
+
+</div>
+
+
+
+
+
+
+
+
+<div class="insight-card">
+
+
+
+<div class="insight-icon orange">
+
+
+<i class="fas fa-bolt"></i>
+
+
+</div>
+
+
+
+<div>
+
+
+<h3>
+
+7
+
+</h3>
+
+
+<p>
+
+Day Streak
+
+</p>
+
+
+</div>
+
+
+
+</div>
+
+
+
+
+
+
+</section>
+
+
+
+
+
+
+
+
+<!--==============================
+ TODAY GOAL
+==============================-->
+
+
+
+<section class="goal-card">
+
+
+
+
+
+<div class="goal-header">
+
+
+
+<div>
+
+
+<span>
+
+Today's Goal
+
+</span>
+
+
+
+<h2>
+
+Complete 2 hours learning
+
+</h2>
+
+
+
+</div>
+
+
+
+
+
+<div class="goal-percent">
+
+
+75%
+
+</div>
+
+
+
+
+</div>
+
+
+
+
+
+
+
+<div class="goal-progress">
+
+
+<div class="goal-fill">
+
+
+</div>
+
+
+</div>
+
+
+
+
+
+
+<div class="goal-footer">
+
+
+<span>
+
+🔥 45 minutes completed
+
+</span>
+
+
+
+<span>
+
+Target: 2 hours
+
+</span>
+
+
+
+</div>
+
+
+
+
+
+</section>
+
+
+
+
+
+<!-- PART 3 CONTINUE -->
+  <!--==================================================
+    STUDYAI PREMIUM AI DASHBOARD
+    AI WORKSPACE
+    HTML PART 3
+==================================================-->
+
+
+
+<!--==============================
+ AI WORKSPACE
+==============================-->
+
+
+
+<section class="ai-workspace">
+
+
+
+
+
+<div class="section-top">
+
+
+
+<div>
+
+
+<span>
+
+POWERFUL FEATURES
+
+</span>
+
+
+
+<h2>
+
+Your AI Learning Workspace
+
+</h2>
+
+
+
+<p>
+
+Everything you need to study smarter.
+
+</p>
+
+
+
+</div>
+
+
+
+
+</div>
+
+
+
+
+
+
+
+
+
+<div class="workspace-grid">
+
+
+
+
+
+
+
+
+
+<!-- AI TUTOR -->
+
+
+<div class="feature-card">
+
+
+
+<div class="feature-icon blue">
+
+
+<i class="fas fa-robot"></i>
+
+
+</div>
+
+
+
+
+<div class="feature-content">
+
+
+<h3>
+
+AI Tutor
+
+</h3>
+
+
+
+<p>
+
+Solve doubts instantly with your personal AI assistant.
+
+</p>
+
+
+
+<a href="ai-tutor.html">
+
+
+Open AI Tutor
+
+<i class="fas fa-arrow-right"></i>
+
+
+</a>
+
+
+
+</div>
+
+
+
+
+</div>
+
+
+
+
+
+
+
+
+
+<!-- SMART NOTES -->
+
+
+<div class="feature-card">
+
+
+
+<div class="feature-icon purple">
+
+
+<i class="fas fa-file-lines"></i>
+
+
+</div>
+
+
+
+
+<div class="feature-content">
+
+
+<h3>
+
+Smart Notes
+
+</h3>
+
+
+
+<p>
+
+Create summaries and organize your study material.
+
+</p>
+
+
+
+<a href="notes.html">
+
+
+Create Notes
+
+<i class="fas fa-arrow-right"></i>
+
+
+</a>
+
+
+
+</div>
+
+
+
+
+</div>
+
+
+
+
+
+
+
+
+
+<!-- QUIZ -->
+
+
+<div class="feature-card">
+
+
+
+<div class="feature-icon green">
+
+
+<i class="fas fa-brain"></i>
+
+
+</div>
+
+
+
+
+<div class="feature-content">
+
+
+<h3>
+
+AI Quiz
+
+</h3>
+
+
+
+<p>
+
+Practice questions and improve your preparation.
+
+</p>
+
+
+
+<a href="quiz.html">
+
+
+Start Quiz
+
+<i class="fas fa-arrow-right"></i>
+
+
+</a>
+
+
+
+</div>
+
+
+
+
+</div>
+
+
+
+
+
+
+
+
+
+<!-- PAPERS -->
+
+
+<div class="feature-card">
+
+
+
+<div class="feature-icon orange">
+
+
+<i class="fas fa-book-open"></i>
+
+
+</div>
+
+
+
+
+<div class="feature-content">
+
+
+<h3>
+
+Previous Papers
+
+</h3>
+
+
+
+<p>
+
+Prepare better with previous exam papers.
+
+</p>
+
+
+
+<a href="pdf.html">
+
+
+View Papers
+
+<i class="fas fa-arrow-right"></i>
+
+
+</a>
+
+
+
+</div>
+
+
+
+
+</div>
+
+
+
+
+
+
+</div>
+
+
+
+
+
+
+</section>
+
+
+
+
+
+
+
+
+
+<!--==============================
+ SMART LEARNING PANEL
+==============================-->
+
+
+
+<section class="smart-panel">
+
+
+
+
+
+<div class="smart-box">
+
+
+
+<div class="smart-icon">
+
+
+<i class="fas fa-lightbulb"></i>
+
+
+</div>
+
+
+
+
+<div>
+
+
+<h3>
+
+AI Study Recommendation
+
+</h3>
+
+
+
+<p>
+
+Based on your activity, continue practicing quizzes to improve your score.
+
+</p>
+
+
+</div>
+
+
+
+
+</div>
+
+
+
+
+
+
+
+
+<div class="smart-box">
+
+
+
+<div class="smart-icon">
+
+
+<i class="fas fa-calendar-check"></i>
+
+
+</div>
+
+
+
+
+<div>
+
+
+<h3>
+
+Daily Learning Plan
+
+</h3>
+
+
+
+<p>
+
+Your next goal: Complete today's study target.
+
+</p>
+
+
+</div>
+
+
+
+
+</div>
+
+
+
+
+
+</section>
+
+
+
+
+
+
+<!-- PART 4 CONTINUE -->
+  <!--==================================================
+    STUDYAI PREMIUM AI DASHBOARD
+    ACTIVITY + CHAT + FOOTER
+    HTML PART 4 FINAL
+==================================================-->
+
+
+
+<!--==============================
+ ACTIVITY + CHAT SECTION
+==============================-->
+
+
+
+<section class="dashboard-bottom">
+
+
+
+
+
+<!-- RECENT ACTIVITY -->
+
+
+
+<div class="activity-panel">
+
+
+
+<div class="panel-header">
+
+
+<div>
+
+<span>
+
+RECENT
+
+</span>
+
+
+<h2>
+
+Your Activity
+
+</h2>
+
+
+</div>
+
+
+</div>
+
+
+
+
+
+
+
+<div class="timeline">
+
+
+
+
+
+
+<div class="timeline-item">
+
+
+
+<div class="timeline-icon">
+
+
+<i class="fas fa-circle-check"></i>
+
+
+</div>
+
+
+
+<div>
+
+
+<h4>
+
+Completed AI Quiz
+
+</h4>
+
+
+<p>
+
+Great work! Keep improving your knowledge.
+
+</p>
+
+
+<small>
+
+Today
+
+</small>
+
+
+</div>
+
+
+
+</div>
+
+
+
+
+
+
+
+
+<div class="timeline-item">
+
+
+
+<div class="timeline-icon">
+
+
+<i class="fas fa-note-sticky"></i>
+
+
+</div>
+
+
+
+<div>
+
+
+<h4>
+
+Created Smart Notes
+
+</h4>
+
+
+<p>
+
+Your notes were saved successfully.
+
+</p>
+
+
+<small>
+
+Today
+
+</small>
+
+
+</div>
+
+
+
+</div>
+
+
+
+
+
+
+
+
+<div class="timeline-item">
+
+
+
+<div class="timeline-icon">
+
+
+<i class="fas fa-robot"></i>
+
+
+</div>
+
+
+
+<div>
+
+
+<h4>
+
+Used AI Tutor
+
+</h4>
+
+
+<p>
+
+AI conversation completed.
+
+</p>
+
+
+<small>
+
+Yesterday
+
+</small>
+
+
+</div>
+
+
+
+</div>
+
+
+
+
+
+
+
+</div>
+
+
+
+</div>
+
+
+
+
+
+
+
+
+
+<!-- CHAT HISTORY -->
+
+
+
+<div class="chat-panel">
+
+
+
+
+
+<div class="panel-header">
+
+
+
+<div>
+
+
+<span>
+
+HISTORY
+
+</span>
+
+
+
+<h2>
+
+AI Conversations
+
+</h2>
+
+
+
+</div>
+
+
+
+
+
+
+
+<button 
+id="deleteAllBtn"
+class="delete-btn"
+>
+
+
+<i class="fas fa-trash"></i>
+
+
+Clear
+
+
+</button>
+
+
+
+</div>
+
+
+
+
+
+
+
+
+<div id="historyBox">
+
+
+Loading chats...
+
+
+</div>
+
+
+
+
+
+
+</div>
+
+
+
+
+
+
+
+</section>
+
+
+
+
+
+
+
+
+
+<!--==============================
+ FINAL LEARNING BANNER
+==============================-->
+
+
+
+<section class="final-banner">
+
+
+
+
+
+<div>
+
+
+<div class="banner-icon">
+
+
+<i class="fas fa-rocket"></i>
+
+
+</div>
+
+
+
+<h2>
+
+Ready for your next learning session?
+
+</h2>
+
+
+
+<p>
+
+Keep learning daily and achieve your goals with StudyAI.
+
+</p>
+
+
+
+</div>
+
+
+
+
+
+
+
+<a href="ai-tutor.html">
+
+
+Continue Learning
+
+
+<i class="fas fa-arrow-right"></i>
+
+
+</a>
+
+
+
+
+
+</section>
+
+
+
+
+
+
+
+
+
+<!--==============================
+ FOOTER
+==============================-->
+
+
+
+<footer class="footer">
+
+
+
+<p>
+
+© 2026 StudyAI. All rights reserved.
+
+</p>
+
+
+
+</footer>
+
+
+
+
+
+
+</main>
+
+
+</div>
+
+
+
+
+
+
+
+
 <script type="module" src="../dashboard.js"></script>
 
+
+
 </body>
+
+
 </html>
