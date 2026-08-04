@@ -1,0 +1,1357 @@
+/*=========================================
+  STUDYAI QUIZ CSS
+  PART 1
+  Variables • Reset • Background
+==========================================*/
+
+/* Google Font */
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap");
+
+/* ==========================
+   ROOT VARIABLES
+========================== */
+
+:root{
+
+  --primary:#2563eb;
+  --primary-dark:#1d4ed8;
+  --secondary:#7c3aed;
+
+  --success:#10b981;
+  --danger:#ef4444;
+  --warning:#f59e0b;
+
+  --white:#ffffff;
+  --black:#111827;
+
+  --text:#e5e7eb;
+  --text-light:#9ca3af;
+
+  --glass:rgba(255,255,255,.08);
+  --glass-border:rgba(255,255,255,.18);
+
+  --shadow:0 20px 60px rgba(0,0,0,.35);
+
+  --radius:22px;
+
+  --transition:.35s ease;
+
+}
+
+/* ==========================
+   RESET
+========================== */
+
+*{
+
+  margin:0;
+  padding:0;
+  box-sizing:border-box;
+
+}
+
+html{
+
+  scroll-behavior:smooth;
+
+}
+
+body{
+
+  font-family:"Poppins",sans-serif;
+
+  min-height:100vh;
+
+  display:flex;
+  justify-content:center;
+  align-items:center;
+
+  padding:30px;
+
+  overflow-x:hidden;
+
+  color:var(--white);
+
+  background:
+  linear-gradient(
+    135deg,
+    #0f172a,
+    #1e3a8a,
+    #4c1d95,
+    #0f172a
+  );
+
+  background-size:400% 400%;
+
+  animation:bgMove 15s ease infinite;
+
+  position:relative;
+
+}
+
+/* ==========================
+   BACKGROUND BLOBS
+========================== */
+
+body::before{
+
+  content:"";
+
+  position:fixed;
+
+  width:420px;
+  height:420px;
+
+  top:-120px;
+  left:-120px;
+
+  border-radius:50%;
+
+  background:rgba(37,99,235,.28);
+
+  filter:blur(90px);
+
+  animation:floatOne 8s ease-in-out infinite;
+
+}
+
+body::after{
+
+  content:"";
+
+  position:fixed;
+
+  width:380px;
+  height:380px;
+
+  bottom:-120px;
+  right:-120px;
+
+  border-radius:50%;
+
+  background:rgba(124,58,237,.28);
+
+  filter:blur(90px);
+
+  animation:floatTwo 9s ease-in-out infinite;
+
+}
+
+/* ==========================
+   ANIMATIONS
+========================== */
+
+@keyframes bgMove{
+
+  0%{
+    background-position:0% 50%;
+  }
+
+  50%{
+    background-position:100% 50%;
+  }
+
+  100%{
+    background-position:0% 50%;
+  }
+
+}
+
+@keyframes floatOne{
+
+  0%,100%{
+    transform:translateY(0);
+  }
+
+  50%{
+    transform:translateY(40px);
+  }
+
+}
+
+@keyframes floatTwo{
+
+  0%,100%{
+    transform:translateY(0);
+  }
+
+  50%{
+    transform:translateY(-40px);
+  }
+
+}
+
+
+/*=========================================
+  STUDYAI QUIZ CSS
+  PART 2
+  Container • Glass Card • Heading
+==========================================*/
+
+/* ==========================
+   QUIZ CONTAINER
+========================== */
+
+.notes-container{
+
+    width:100%;
+
+    max-width:900px;
+
+    padding:40px;
+
+    border-radius:26px;
+
+    background:var(--glass);
+
+    border:1px solid var(--glass-border);
+
+    backdrop-filter:blur(22px);
+    -webkit-backdrop-filter:blur(22px);
+
+    box-shadow:var(--shadow);
+
+    position:relative;
+
+    z-index:2;
+
+    overflow:hidden;
+
+    animation:cardFade .8s ease;
+
+    transition:var(--transition);
+
+}
+
+/* ==========================
+   CONTAINER HOVER
+========================== */
+
+.notes-container:hover{
+
+    transform:translateY(-5px);
+
+    box-shadow:
+        0 25px 70px rgba(37,99,235,.25);
+
+}
+
+/* ==========================
+   TOP GRADIENT BAR
+========================== */
+
+.notes-container::before{
+
+    content:"";
+
+    position:absolute;
+
+    top:0;
+    left:0;
+
+    width:100%;
+
+    height:5px;
+
+    background:
+    linear-gradient(
+        90deg,
+        var(--primary),
+        var(--secondary)
+    );
+
+}
+
+/* ==========================
+   HEADING
+========================== */
+
+.notes-container h1{
+
+    font-size:2rem;
+
+    font-weight:700;
+
+    text-align:center;
+
+    color:var(--white);
+
+    margin-bottom:28px;
+
+    letter-spacing:.5px;
+
+}
+
+/* ==========================
+   SCORE HEADING
+========================== */
+
+#score{
+
+    margin-top:25px;
+
+    text-align:center;
+
+    font-size:1.6rem;
+
+    font-weight:700;
+
+    color:var(--success);
+
+}
+
+/* ==========================
+   CARD ANIMATION
+========================== */
+
+@keyframes cardFade{
+
+    from{
+
+        opacity:0;
+
+        transform:
+            translateY(35px)
+            scale(.96);
+
+    }
+
+    to{
+
+        opacity:1;
+
+        transform:
+            translateY(0)
+            scale(1);
+
+    }
+
+}
+
+/* ==========================
+   TEXT SELECTION
+========================== */
+
+::selection{
+
+    background:var(--primary);
+
+    color:#fff;
+
+}
+
+/*=========================================
+  STUDYAI QUIZ CSS
+  PART 3
+  Topic Input • Focus • Placeholder
+==========================================*/
+
+/* ==========================
+   TOPIC INPUT
+========================== */
+
+#topicInput{
+
+    width:100%;
+
+    height:60px;
+
+    padding:0 20px;
+
+    margin-bottom:24px;
+
+    border:none;
+
+    outline:none;
+
+    border-radius:16px;
+
+    background:rgba(255,255,255,.08);
+
+    border:1px solid rgba(255,255,255,.12);
+
+    color:var(--white);
+
+    font-family:"Poppins",sans-serif;
+
+    font-size:15px;
+
+    transition:var(--transition);
+
+}
+
+/* ==========================
+   PLACEHOLDER
+========================== */
+
+#topicInput::placeholder{
+
+    color:var(--text-light);
+
+    font-size:15px;
+
+}
+
+/* ==========================
+   INPUT FOCUS
+========================== */
+
+#topicInput:focus{
+
+    background:rgba(255,255,255,.12);
+
+    border-color:var(--primary);
+
+    box-shadow:
+        0 0 0 4px rgba(37,99,235,.18),
+        0 12px 35px rgba(37,99,235,.20);
+
+    transform:translateY(-2px);
+
+}
+
+/* ==========================
+   VALID INPUT
+========================== */
+
+#topicInput:valid{
+
+    border-color:rgba(16,185,129,.35);
+
+}
+
+/* ==========================
+   INVALID INPUT
+========================== */
+
+#topicInput:invalid:focus{
+
+    border-color:rgba(239,68,68,.55);
+
+}
+
+/* ==========================
+   CARET
+========================== */
+
+#topicInput{
+
+    caret-color:var(--primary);
+
+}
+
+/* ==========================
+   DISABLED
+========================== */
+
+#topicInput:disabled{
+
+    opacity:.6;
+
+    cursor:not-allowed;
+
+}
+
+/* ==========================
+   ACTIVE
+========================== */
+
+#topicInput:active{
+
+    transform:scale(.99);
+
+}
+
+/* ==========================
+   AUTOFILL FIX
+========================== */
+
+#topicInput:-webkit-autofill,
+#topicInput:-webkit-autofill:hover,
+#topicInput:-webkit-autofill:focus{
+
+    -webkit-text-fill-color:#fff;
+
+    transition:background-color 9999s ease-in-out 0s;
+
+    box-shadow:0 0 0 1000px rgba(255,255,255,.08) inset;
+
+}
+
+/*=========================================
+  STUDYAI QUIZ CSS
+  PART 4
+  Buttons • Quiz Output • Score
+==========================================*/
+
+/* ==========================
+   GENERATE BUTTON
+========================== */
+
+#generateBtn{
+
+    width:100%;
+
+    height:58px;
+
+    margin-bottom:25px;
+
+    border:none;
+    outline:none;
+
+    border-radius:16px;
+
+    cursor:pointer;
+
+    font-family:"Poppins",sans-serif;
+    font-size:16px;
+    font-weight:600;
+
+    color:#fff;
+
+    background:linear-gradient(
+        135deg,
+        var(--primary),
+        var(--secondary)
+    );
+
+    box-shadow:
+        0 12px 30px rgba(37,99,235,.35);
+
+    position:relative;
+
+    overflow:hidden;
+
+    transition:var(--transition);
+
+}
+
+/* ==========================
+   BUTTON SHINE
+========================== */
+
+#generateBtn::before{
+
+    content:"";
+
+    position:absolute;
+
+    top:0;
+    left:-120%;
+
+    width:60%;
+    height:100%;
+
+    background:linear-gradient(
+        90deg,
+        transparent,
+        rgba(255,255,255,.35),
+        transparent
+    );
+
+    transform:skewX(-25deg);
+
+    transition:.8s;
+
+}
+
+#generateBtn:hover::before{
+
+    left:150%;
+
+}
+
+#generateBtn:hover{
+
+    transform:translateY(-3px);
+
+    box-shadow:
+        0 18px 45px rgba(37,99,235,.45);
+
+}
+
+#generateBtn:active{
+
+    transform:scale(.98);
+
+}
+
+#generateBtn:disabled{
+
+    opacity:.6;
+
+    cursor:not-allowed;
+
+    box-shadow:none;
+
+}
+
+/* ==========================
+   QUIZ OUTPUT
+========================== */
+
+#quizOutput{
+
+    margin-top:15px;
+
+    padding:22px;
+
+    min-height:220px;
+
+    border-radius:18px;
+
+    background:rgba(255,255,255,.08);
+
+    border:1px solid rgba(255,255,255,.12);
+
+    color:var(--text);
+
+    line-height:1.9;
+
+    font-size:15px;
+
+    overflow-x:auto;
+
+    transition:var(--transition);
+
+}
+
+#quizOutput:hover{
+
+    border-color:rgba(37,99,235,.35);
+
+    box-shadow:
+        0 12px 30px rgba(37,99,235,.12);
+
+}
+
+/* ==========================
+   QUIZ QUESTIONS
+========================== */
+
+#quizOutput p{
+
+    margin-bottom:16px;
+
+    font-weight:600;
+
+    color:#fff;
+
+}
+
+#quizOutput label{
+
+    display:block;
+
+    margin:10px 0;
+
+    padding:12px 15px;
+
+    border-radius:12px;
+
+    background:rgba(255,255,255,.05);
+
+    cursor:pointer;
+
+    transition:var(--transition);
+
+}
+
+#quizOutput label:hover{
+
+    background:rgba(37,99,235,.15);
+
+    transform:translateX(4px);
+
+}
+
+/* ==========================
+   RADIO BUTTON
+========================== */
+
+#quizOutput input[type="radio"]{
+
+    margin-right:10px;
+
+    accent-color:var(--primary);
+
+}
+
+/* ==========================
+   SCORE BUTTON
+========================== */
+
+#scoreBtn{
+
+    width:100%;
+
+    height:56px;
+
+    margin-top:25px;
+
+    border:none;
+
+    outline:none;
+
+    border-radius:16px;
+
+    cursor:pointer;
+
+    font-family:"Poppins",sans-serif;
+
+    font-size:16px;
+
+    font-weight:600;
+
+    color:#fff;
+
+    background:linear-gradient(
+        135deg,
+        var(--success),
+        #059669
+    );
+
+    box-shadow:
+        0 12px 30px rgba(16,185,129,.35);
+
+    transition:var(--transition);
+
+}
+
+#scoreBtn:hover{
+
+    transform:translateY(-3px);
+
+    box-shadow:
+        0 18px 45px rgba(16,185,129,.45);
+
+}
+
+#scoreBtn:active{
+
+    transform:scale(.98);
+
+}
+
+/* ==========================
+   SCORE DISPLAY
+========================== */
+
+#score{
+
+    margin-top:22px;
+
+    text-align:center;
+
+    font-size:1.7rem;
+
+    font-weight:700;
+
+    color:var(--success);
+
+    animation:scorePop .5s ease;
+
+}
+
+@keyframes scorePop{
+
+    from{
+
+        opacity:0;
+
+        transform:scale(.8);
+
+    }
+
+    to{
+
+        opacity:1;
+
+        transform:scale(1);
+
+    }
+
+}
+
+
+/*=========================================
+  STUDYAI QUIZ CSS
+  PART 5
+  Responsive • Animations
+==========================================*/
+
+/* ==========================
+   TABLET
+========================== */
+
+@media (max-width:768px){
+
+    body{
+
+        padding:20px;
+
+    }
+
+    .notes-container{
+
+        padding:32px 24px;
+
+        border-radius:22px;
+
+    }
+
+    .notes-container h1{
+
+        font-size:1.8rem;
+
+        margin-bottom:24px;
+
+    }
+
+    #topicInput{
+
+        height:56px;
+
+        font-size:14px;
+
+        margin-bottom:20px;
+
+    }
+
+    #generateBtn,
+    #scoreBtn{
+
+        height:54px;
+
+        font-size:15px;
+
+    }
+
+    #quizOutput{
+
+        min-height:180px;
+
+        padding:18px;
+
+        font-size:14px;
+
+    }
+
+    #score{
+
+        font-size:1.5rem;
+
+    }
+
+}
+
+/* ==========================
+   MOBILE
+========================== */
+
+@media (max-width:480px){
+
+    body{
+
+        padding:15px;
+
+    }
+
+    .notes-container{
+
+        padding:24px 18px;
+
+        border-radius:18px;
+
+    }
+
+    .notes-container h1{
+
+        font-size:1.45rem;
+
+        line-height:1.4;
+
+    }
+
+    #topicInput{
+
+        height:52px;
+
+        padding:0 16px;
+
+        border-radius:14px;
+
+    }
+
+    #generateBtn,
+    #scoreBtn{
+
+        height:52px;
+
+        border-radius:14px;
+
+        font-size:15px;
+
+    }
+
+    #quizOutput{
+
+        min-height:160px;
+
+        padding:16px;
+
+        border-radius:14px;
+
+        font-size:14px;
+
+        line-height:1.7;
+
+    }
+
+    #quizOutput p{
+
+        font-size:15px;
+
+    }
+
+    #quizOutput label{
+
+        padding:10px 12px;
+
+        font-size:14px;
+
+    }
+
+    #score{
+
+        font-size:1.3rem;
+
+    }
+
+}
+
+/* ==========================
+   SMALL DEVICES
+========================== */
+
+@media (max-width:360px){
+
+    .notes-container{
+
+        padding:20px 15px;
+
+    }
+
+    .notes-container h1{
+
+        font-size:1.25rem;
+
+    }
+
+    #topicInput{
+
+        height:50px;
+
+    }
+
+    #quizOutput{
+
+        min-height:140px;
+
+    }
+
+}
+
+/* ==========================
+   FADE UP
+========================== */
+
+.fade-up{
+
+    animation:fadeUp .8s ease both;
+
+}
+
+@keyframes fadeUp{
+
+    from{
+
+        opacity:0;
+
+        transform:translateY(25px);
+
+    }
+
+    to{
+
+        opacity:1;
+
+        transform:translateY(0);
+
+    }
+
+}
+
+/* ==========================
+   FLOAT
+========================== */
+
+.float{
+
+    animation:floating 4s ease-in-out infinite;
+
+}
+
+@keyframes floating{
+
+    0%,100%{
+
+        transform:translateY(0);
+
+    }
+
+    50%{
+
+        transform:translateY(-8px);
+
+    }
+
+}
+
+/* ==========================
+   REDUCED MOTION
+========================== */
+
+@media (prefers-reduced-motion:reduce){
+
+    *{
+
+        animation:none !important;
+
+        transition:none !important;
+
+        scroll-behavior:auto !important;
+
+    }
+
+}
+
+
+
+/*=========================================
+  STUDYAI QUIZ CSS
+  PART 6
+  Premium Finish • Scrollbar • Utilities
+==========================================*/
+
+/* ==========================
+   PREMIUM GLOW
+========================== */
+
+.notes-container{
+
+    position:relative;
+
+    overflow:hidden;
+
+}
+
+.notes-container::after{
+
+    content:"";
+
+    position:absolute;
+
+    inset:-40%;
+
+    background:
+    radial-gradient(
+        circle,
+        rgba(255,255,255,.08) 0%,
+        transparent 65%
+    );
+
+    animation:rotateGlow 12s linear infinite;
+
+    pointer-events:none;
+
+}
+
+@keyframes rotateGlow{
+
+    from{
+
+        transform:rotate(0deg);
+
+    }
+
+    to{
+
+        transform:rotate(360deg);
+
+    }
+
+}
+
+/* ==========================
+   PAGE SCROLLBAR
+========================== */
+
+::-webkit-scrollbar{
+
+    width:10px;
+
+}
+
+::-webkit-scrollbar-track{
+
+    background:#0f172a;
+
+}
+
+::-webkit-scrollbar-thumb{
+
+    background:linear-gradient(
+        180deg,
+        var(--primary),
+        var(--secondary)
+    );
+
+    border-radius:20px;
+
+}
+
+::-webkit-scrollbar-thumb:hover{
+
+    background:var(--primary-dark);
+
+}
+
+/* ==========================
+   CORRECT / WRONG ANSWERS
+========================== */
+
+.correct{
+
+    background:rgba(16,185,129,.15) !important;
+
+    border:1px solid rgba(16,185,129,.45);
+
+    color:#d1fae5;
+
+}
+
+.wrong{
+
+    background:rgba(239,68,68,.15) !important;
+
+    border:1px solid rgba(239,68,68,.45);
+
+    color:#fee2e2;
+
+}
+
+/* ==========================
+   FOCUS ACCESSIBILITY
+========================== */
+
+button:focus-visible,
+input:focus-visible{
+
+    outline:3px solid rgba(37,99,235,.45);
+
+    outline-offset:3px;
+
+}
+
+/* ==========================
+   HORIZONTAL RULE
+========================== */
+
+hr{
+
+    border:none;
+
+    height:1px;
+
+    margin:20px 0;
+
+    background:rgba(255,255,255,.12);
+
+}
+
+/* ==========================
+   IMAGE
+========================== */
+
+img{
+
+    max-width:100%;
+
+    display:block;
+
+}
+
+/* ==========================
+   LINKS
+========================== */
+
+a{
+
+    color:var(--primary);
+
+    text-decoration:none;
+
+    transition:var(--transition);
+
+}
+
+a:hover{
+
+    color:#ffffff;
+
+}
+
+/* ==========================
+   UTILITY CLASSES
+========================== */
+
+.text-center{
+
+    text-align:center;
+
+}
+
+.hidden{
+
+    display:none !important;
+
+}
+
+.w-100{
+
+    width:100%;
+
+}
+
+.mt-10{
+
+    margin-top:10px;
+
+}
+
+.mt-20{
+
+    margin-top:20px;
+
+}
+
+.mb-20{
+
+    margin-bottom:20px;
+
+}
+
+.round{
+
+    border-radius:50%;
+
+}
+
+/* ==========================
+   LOADING STATE
+========================== */
+
+.loading{
+
+    opacity:.7;
+
+    cursor:wait;
+
+    pointer-events:none;
+
+}
+
+/* ==========================
+   SMOOTH TRANSITIONS
+========================== */
+
+button,
+input,
+#quizOutput,
+.notes-container{
+
+    transition:var(--transition);
+
+}
+
+/* ==========================
+   PRINT MODE
+========================== */
+
+@media print{
+
+    body{
+
+        background:#ffffff;
+
+        color:#000000;
+
+    }
+
+    .notes-container{
+
+        background:#ffffff;
+
+        border:1px solid #cccccc;
+
+        box-shadow:none;
+
+    }
+
+    #generateBtn,
+    #scoreBtn{
+
+        display:none;
+
+    }
+
+}
+
+/* ==========================
+   END OF QUIZ CSS
+==========================================*/
+
+
+.notes-container .quiz-input-area{
+    display:flex;
+    gap:15px;
+    justify-content:center;
+    align-items:center;
+    flex-wrap:wrap;
+    margin-top:25px;
+}
+
+
+.notes-container .quiz-input-area input{
+    width:280px;
+    padding:14px 18px;
+    border-radius:14px;
+    border:1px solid rgba(255,255,255,0.3);
+    background:rgba(255,255,255,0.15);
+    color:white;
+    font-size:16px;
+    outline:none;
+}
+
+
+.notes-container .quiz-input-area button{
+    padding:14px 25px;
+    border:none;
+    border-radius:14px;
+    background:linear-gradient(135deg,#2563eb,#9333ea);
+    color:white;
+    font-size:16px;
+    font-weight:600;
+    cursor:pointer;
+}
