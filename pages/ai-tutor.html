@@ -7,49 +7,113 @@
 
 <title>AI Tutor | StudyAI</title>
 
-<link rel="stylesheet" href="../style.css">
-
+<link rel="stylesheet" href="../css/ai-tutor.css">
 </head>
 
-<body>
+<body class="ai-page">
 
-<div class="chat-container">
-
-    <div class="chat-header">
-        <h2>🤖 StudyAI Tutor</h2>
-    </div>
-
-
-    <div id="chatBox" class="chat-box">
-
-        <div class="bot-message">
-            👋 Hello! I'm your AI Tutor.
-            Ask me anything.
-        </div>
-
-    </div>
-
-
-    <div class="chat-input">
-
-<input 
-type="text" 
-id="userInput" 
-placeholder="Ask anything...">
-      
-
-<button id="sendBtn" type="button">
-Send
+<div class="chat-page">
+  <!-- Mobile Menu -->
+<button class="menu-toggle" id="menuToggle">
+☰
 </button>
 
-    </div>
+    <!-- Sidebar -->
 
+    <!-- Sidebar -->
+<aside class="sidebar" id="sidebar">
 
+<div class="logo">
+<h2>🎓 StudyAI</h2>
+<p>Your AI Learning Partner</p>
 </div>
 
+<nav>
+
+<ul>
+
+<li><a href="dashboard.html">🏠 Dashboard</a></li>
+
+<li><a class="active" href="ai-tutor.html">🤖 AI Tutor</a></li>
+
+<li><a href="notes.html">📝 Notes</a></li>
+
+<li><a href="quiz.html">🧠 Quiz</a></li>
+
+<li><a href="pdf.html">📚 Previous Papers</a></li>
+
+<li><a href="#">📈 Progress</a></li>
+
+<li><a href="profile.html">👤 Profile</a></li>
+
+<li><a href="#">⚙️ Settings</a></li>
+
+</ul>
+
+</nav>
+
+</aside>
+
+    <!-- Chat -->
+
+<main class="main-content chat-main">
+
+        <header class="chat-header">
+
+            <div>
+
+                <h2>🤖 StudyAI Tutor</h2>
+
+                <p>Your personal AI assistant</p>
+
+            </div>
+
+            <div class="online-status">
+
+                <span class="dot"></span>
+
+                AI Online
+
+            </div>
+
+        </header>
+
+        <div id="chatBox" class="chat-box">
+
+            <div class="bot-message">
+
+                <div class="avatar">🤖</div>
+
+                <div class="message">
+
+                    👋 Hello! I'm your AI Tutor.<br>
+                    Ask me anything.
+
+                </div>
+
+            </div>
+
+        </div>
+
+        <div class="chat-input">
+
+            <input
+                type="text"
+                id="userInput"
+                placeholder="Ask anything...">
+
+            <button id="sendBtn">
+                ➤
+            </button>
+
+        </div>
+
+    </main>
+
+</div>
 
 <script type="module" src="../ai-tutor.js"></script>
 
 </body>
-
+  
 </html>
