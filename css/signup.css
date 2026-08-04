@@ -1,0 +1,1116 @@
+/*=========================================
+  STUDYAI SIGNUP CSS
+  PART 1
+  Variables • Reset • Background
+==========================================*/
+
+/* Google Font */
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap");
+
+/* ==========================
+   ROOT VARIABLES
+========================== */
+
+:root{
+
+  --primary:#2563eb;
+  --primary-dark:#1d4ed8;
+  --secondary:#7c3aed;
+
+  --success:#10b981;
+  --danger:#ef4444;
+  --warning:#f59e0b;
+
+  --white:#ffffff;
+  --black:#111827;
+
+  --text:#e5e7eb;
+  --text-light:#9ca3af;
+
+  --glass:rgba(255,255,255,.08);
+  --glass-border:rgba(255,255,255,.18);
+
+  --shadow:0 20px 60px rgba(0,0,0,.35);
+
+  --radius:22px;
+
+  --transition:.35s ease;
+
+}
+
+/* ==========================
+   RESET
+========================== */
+
+*{
+  margin:0;
+  padding:0;
+  box-sizing:border-box;
+}
+
+html{
+  scroll-behavior:smooth;
+}
+
+body{
+
+  font-family:"Poppins",sans-serif;
+
+  min-height:100vh;
+
+  display:flex;
+  justify-content:center;
+  align-items:center;
+
+  overflow-x:hidden;
+
+  color:var(--white);
+
+  background:
+  linear-gradient(
+  135deg,
+  #0f172a,
+  #1e3a8a,
+  #4c1d95,
+  #0f172a);
+
+  background-size:400% 400%;
+
+  animation:bgMove 15s ease infinite;
+
+  position:relative;
+
+}
+
+/* ==========================
+   ANIMATED BACKGROUND
+========================== */
+
+body::before{
+
+  content:"";
+
+  position:fixed;
+
+  width:420px;
+  height:420px;
+
+  top:-120px;
+  left:-120px;
+
+  border-radius:50%;
+
+  background:rgba(37,99,235,.28);
+
+  filter:blur(90px);
+
+  animation:floatOne 8s ease-in-out infinite;
+
+}
+
+body::after{
+
+  content:"";
+
+  position:fixed;
+
+  width:380px;
+  height:380px;
+
+  bottom:-120px;
+  right:-120px;
+
+  border-radius:50%;
+
+  background:rgba(124,58,237,.28);
+
+  filter:blur(90px);
+
+  animation:floatTwo 9s ease-in-out infinite;
+
+}
+
+/* ==========================
+   BACKGROUND ANIMATION
+========================== */
+
+@keyframes bgMove{
+
+  0%{
+    background-position:0% 50%;
+  }
+
+  50%{
+    background-position:100% 50%;
+  }
+
+  100%{
+    background-position:0% 50%;
+  }
+
+}
+
+@keyframes floatOne{
+
+  0%,100%{
+    transform:translateY(0);
+  }
+
+  50%{
+    transform:translateY(40px);
+  }
+
+}
+
+@keyframes floatTwo{
+
+  0%,100%{
+    transform:translateY(0);
+  }
+
+  50%{
+    transform:translateY(-40px);
+  }
+
+}
+
+
+/*=========================================
+  STUDYAI SIGNUP CSS
+  PART 2
+  Auth Container • Glass Card • Logo
+==========================================*/
+
+/* ==========================
+   AUTH CONTAINER
+========================== */
+
+.auth-container{
+
+    width:100%;
+    min-height:100vh;
+
+    display:flex;
+    justify-content:center;
+    align-items:center;
+
+    padding:40px 20px;
+
+    position:relative;
+    z-index:2;
+
+}
+
+/* ==========================
+   AUTH CARD
+========================== */
+
+.auth-card{
+
+    width:100%;
+    max-width:460px;
+
+    padding:42px 36px;
+
+    background:var(--glass);
+
+    border:1px solid var(--glass-border);
+
+    border-radius:var(--radius);
+
+    backdrop-filter:blur(22px);
+    -webkit-backdrop-filter:blur(22px);
+
+    box-shadow:var(--shadow);
+
+    transition:var(--transition);
+
+    animation:cardFade .8s ease;
+
+}
+
+.auth-card:hover{
+
+    transform:translateY(-6px);
+
+    box-shadow:
+    0 25px 70px rgba(37,99,235,.25);
+
+}
+
+/* ==========================
+   LOGO
+========================== */
+
+.logo{
+
+    width:78px;
+    height:78px;
+
+    margin:0 auto 20px;
+
+    display:flex;
+    align-items:center;
+    justify-content:center;
+
+    font-size:34px;
+
+    border-radius:50%;
+
+    background:
+    linear-gradient(
+    135deg,
+    var(--primary),
+    var(--secondary));
+
+    color:#fff;
+
+    box-shadow:
+    0 10px 30px rgba(37,99,235,.35);
+
+}
+
+/* ==========================
+   TITLE
+========================== */
+
+.auth-card h1{
+
+    font-size:2rem;
+
+    text-align:center;
+
+    font-weight:700;
+
+    color:#fff;
+
+    margin-bottom:10px;
+
+}
+
+/* ==========================
+   SUBTITLE
+========================== */
+
+.auth-card p{
+
+    text-align:center;
+
+    color:var(--text-light);
+
+    font-size:.95rem;
+
+    line-height:1.7;
+
+    margin-bottom:28px;
+
+}
+
+/* ==========================
+   FORM
+========================== */
+
+.auth-card form{
+
+    display:flex;
+    flex-direction:column;
+
+    gap:18px;
+
+}
+
+/* ==========================
+   CARD ANIMATION
+========================== */
+
+@keyframes cardFade{
+
+    from{
+
+        opacity:0;
+
+        transform:
+        translateY(35px)
+        scale(.96);
+
+    }
+
+    to{
+
+        opacity:1;
+
+        transform:
+        translateY(0)
+        scale(1);
+
+    }
+
+}
+
+
+/*=========================================
+  STUDYAI SIGNUP CSS
+  PART 3
+  Inputs • Focus • Placeholder
+==========================================*/
+
+/* ==========================
+   INPUT FIELDS
+========================== */
+
+.auth-card input{
+
+    width:100%;
+
+    height:58px;
+
+    padding:0 18px;
+
+    border:none;
+
+    outline:none;
+
+    border-radius:16px;
+
+    background:rgba(255,255,255,.08);
+
+    border:1px solid rgba(255,255,255,.12);
+
+    color:var(--white);
+
+    font-size:15px;
+
+    font-family:"Poppins",sans-serif;
+
+    transition:var(--transition);
+
+}
+
+/* ==========================
+   PLACEHOLDER
+========================== */
+
+.auth-card input::placeholder{
+
+    color:var(--text-light);
+
+    font-size:14px;
+
+}
+
+/* ==========================
+   INPUT FOCUS
+========================== */
+
+.auth-card input:focus{
+
+    background:rgba(255,255,255,.12);
+
+    border-color:var(--primary);
+
+    box-shadow:
+        0 0 0 4px rgba(37,99,235,.18),
+        0 8px 25px rgba(37,99,235,.18);
+
+    transform:translateY(-2px);
+
+}
+
+/* ==========================
+   VALID INPUT
+========================== */
+
+.auth-card input:valid{
+
+    border-color:rgba(16,185,129,.35);
+
+}
+
+/* ==========================
+   INVALID INPUT
+========================== */
+
+.auth-card input:invalid:focus{
+
+    border-color:rgba(239,68,68,.55);
+
+}
+
+/* ==========================
+   AUTOFILL FIX
+========================== */
+
+.auth-card input:-webkit-autofill,
+.auth-card input:-webkit-autofill:hover,
+.auth-card input:-webkit-autofill:focus{
+
+    -webkit-text-fill-color:#fff;
+
+    transition:background-color 9999s ease-in-out 0s;
+
+    box-shadow:0 0 0 1000px rgba(255,255,255,.08) inset;
+
+}
+
+/* ==========================
+   PASSWORD CARET
+========================== */
+
+.auth-card input{
+
+    caret-color:var(--primary);
+
+}
+
+/* ==========================
+   DISABLED INPUT
+========================== */
+
+.auth-card input:disabled{
+
+    opacity:.6;
+
+    cursor:not-allowed;
+
+}
+
+/* ==========================
+   INPUT ACTIVE
+========================== */
+
+.auth-card input:active{
+
+    transform:scale(.99);
+
+}
+
+
+
+
+
+/*=========================================
+  STUDYAI SIGNUP CSS
+  PART 4
+  Button • Footer • Links
+==========================================*/
+
+/* ==========================
+   SUBMIT BUTTON
+========================== */
+
+#signupBtn{
+
+    width:100%;
+
+    height:58px;
+
+    margin-top:8px;
+
+    border:none;
+    outline:none;
+
+    border-radius:16px;
+
+    cursor:pointer;
+
+    font-family:"Poppins",sans-serif;
+    font-size:16px;
+    font-weight:600;
+
+    color:#fff;
+
+    background:linear-gradient(
+        135deg,
+        var(--primary),
+        var(--secondary)
+    );
+
+    box-shadow:
+        0 12px 30px rgba(37,99,235,.35);
+
+    transition:var(--transition);
+
+    position:relative;
+
+    overflow:hidden;
+
+}
+
+/* ==========================
+   BUTTON SHINE
+========================== */
+
+#signupBtn::before{
+
+    content:"";
+
+    position:absolute;
+
+    top:0;
+    left:-120%;
+
+    width:60%;
+    height:100%;
+
+    background:linear-gradient(
+        90deg,
+        transparent,
+        rgba(255,255,255,.35),
+        transparent
+    );
+
+    transform:skewX(-25deg);
+
+    transition:.8s;
+
+}
+
+#signupBtn:hover::before{
+
+    left:150%;
+
+}
+
+/* ==========================
+   BUTTON HOVER
+========================== */
+
+#signupBtn:hover{
+
+    transform:translateY(-3px);
+
+    box-shadow:
+        0 18px 40px rgba(37,99,235,.45);
+
+}
+
+/* ==========================
+   BUTTON ACTIVE
+========================== */
+
+#signupBtn:active{
+
+    transform:scale(.98);
+
+}
+
+/* ==========================
+   BUTTON DISABLED
+========================== */
+
+#signupBtn:disabled{
+
+    opacity:.65;
+
+    cursor:not-allowed;
+
+    transform:none;
+
+    box-shadow:none;
+
+}
+
+/* ==========================
+   AUTH FOOTER
+========================== */
+
+.auth-footer{
+
+    margin-top:28px;
+
+    text-align:center;
+
+}
+
+/* ==========================
+   FOOTER TEXT
+========================== */
+
+.auth-footer p{
+
+    margin:0;
+
+    color:var(--text-light);
+
+    font-size:14px;
+
+}
+
+/* ==========================
+   FOOTER LINK
+========================== */
+
+.auth-footer a{
+
+    color:var(--primary);
+
+    text-decoration:none;
+
+    font-weight:600;
+
+    transition:var(--transition);
+
+}
+
+.auth-footer a:hover{
+
+    color:#ffffff;
+
+    text-decoration:underline;
+
+}
+
+/* ==========================
+   SELECTION
+========================== */
+
+::selection{
+
+    background:var(--primary);
+
+    color:#fff;
+
+}
+
+
+/*=========================================
+  STUDYAI SIGNUP CSS
+  PART 5
+  Responsive • Animations
+==========================================*/
+
+/* ==========================
+   TABLET
+========================== */
+
+@media (max-width:768px){
+
+    .auth-container{
+
+        padding:30px 18px;
+
+    }
+
+    .auth-card{
+
+        max-width:100%;
+
+        padding:36px 28px;
+
+        border-radius:20px;
+
+    }
+
+    .logo{
+
+        width:70px;
+        height:70px;
+
+        font-size:30px;
+
+    }
+
+    .auth-card h1{
+
+        font-size:1.8rem;
+
+    }
+
+    .auth-card p{
+
+        font-size:.92rem;
+
+    }
+
+}
+
+/* ==========================
+   MOBILE
+========================== */
+
+@media (max-width:480px){
+
+    .auth-container{
+
+        padding:20px 14px;
+
+    }
+
+    .auth-card{
+
+        padding:28px 20px;
+
+        border-radius:18px;
+
+    }
+
+    .logo{
+
+        width:62px;
+        height:62px;
+
+        font-size:26px;
+
+        margin-bottom:16px;
+
+    }
+
+    .auth-card h1{
+
+        font-size:1.55rem;
+
+    }
+
+    .auth-card p{
+
+        font-size:.88rem;
+
+        margin-bottom:22px;
+
+    }
+
+    .auth-card form{
+
+        gap:15px;
+
+    }
+
+    .auth-card input{
+
+        height:54px;
+
+        font-size:14px;
+
+        border-radius:14px;
+
+    }
+
+    #signupBtn{
+
+        height:54px;
+
+        font-size:15px;
+
+        border-radius:14px;
+
+    }
+
+    .auth-footer{
+
+        margin-top:22px;
+
+    }
+
+    .auth-footer p{
+
+        font-size:13px;
+
+    }
+
+}
+
+/* ==========================
+   SMALL DEVICES
+========================== */
+
+@media (max-width:360px){
+
+    .auth-card{
+
+        padding:24px 16px;
+
+    }
+
+    .auth-card h1{
+
+        font-size:1.4rem;
+
+    }
+
+}
+
+/* ==========================
+   FADE ANIMATION
+========================== */
+
+.fade-up{
+
+    animation:fadeUp .8s ease both;
+
+}
+
+@keyframes fadeUp{
+
+    from{
+
+        opacity:0;
+
+        transform:translateY(25px);
+
+    }
+
+    to{
+
+        opacity:1;
+
+        transform:translateY(0);
+
+    }
+
+}
+
+/* ==========================
+   FLOAT ANIMATION
+========================== */
+
+.float{
+
+    animation:floating 4s ease-in-out infinite;
+
+}
+
+@keyframes floating{
+
+    0%,100%{
+
+        transform:translateY(0);
+
+    }
+
+    50%{
+
+        transform:translateY(-8px);
+
+    }
+
+}
+
+/* ==========================
+   REDUCED MOTION
+========================== */
+
+@media (prefers-reduced-motion:reduce){
+
+    *{
+
+        animation:none !important;
+
+        transition:none !important;
+
+        scroll-behavior:auto !important;
+
+    }
+
+}
+
+
+
+
+/*=========================================
+  STUDYAI SIGNUP CSS
+  PART 6
+  Premium Finish • Scrollbar • Utilities
+==========================================*/
+
+/* ==========================
+   PREMIUM GLOW
+========================== */
+
+.auth-card{
+
+    position:relative;
+
+    overflow:hidden;
+
+}
+
+.auth-card::before{
+
+    content:"";
+
+    position:absolute;
+
+    top:-50%;
+    left:-50%;
+
+    width:200%;
+    height:200%;
+
+    background:
+    radial-gradient(
+        circle,
+        rgba(255,255,255,.08) 0%,
+        transparent 60%
+    );
+
+    animation:cardGlow 10s linear infinite;
+
+    pointer-events:none;
+
+}
+
+@keyframes cardGlow{
+
+    from{
+
+        transform:rotate(0deg);
+
+    }
+
+    to{
+
+        transform:rotate(360deg);
+
+    }
+
+}
+
+/* ==========================
+   SCROLLBAR
+========================== */
+
+::-webkit-scrollbar{
+
+    width:10px;
+
+}
+
+::-webkit-scrollbar-track{
+
+    background:#0f172a;
+
+}
+
+::-webkit-scrollbar-thumb{
+
+    background:linear-gradient(
+        180deg,
+        var(--primary),
+        var(--secondary)
+    );
+
+    border-radius:20px;
+
+}
+
+::-webkit-scrollbar-thumb:hover{
+
+    background:var(--primary-dark);
+
+}
+
+/* ==========================
+   FOCUS ACCESSIBILITY
+========================== */
+
+button:focus-visible,
+input:focus-visible,
+a:focus-visible{
+
+    outline:3px solid rgba(37,99,235,.45);
+
+    outline-offset:3px;
+
+}
+
+/* ==========================
+   HORIZONTAL RULE
+========================== */
+
+hr{
+
+    border:none;
+
+    height:1px;
+
+    margin:20px 0;
+
+    background:rgba(255,255,255,.12);
+
+}
+
+/* ==========================
+   UTILITIES
+========================== */
+
+.text-center{
+
+    text-align:center;
+
+}
+
+.hidden{
+
+    display:none !important;
+
+}
+
+.w-100{
+
+    width:100%;
+
+}
+
+.mt-10{
+
+    margin-top:10px;
+
+}
+
+.mt-20{
+
+    margin-top:20px;
+
+}
+
+.mb-20{
+
+    margin-bottom:20px;
+
+}
+
+.round{
+
+    border-radius:50%;
+
+}
+
+/* ==========================
+   LOADING BUTTON
+========================== */
+
+.loading{
+
+    opacity:.7;
+
+    pointer-events:none;
+
+    cursor:wait;
+
+}
+
+/* ==========================
+   IMAGE
+========================== */
+
+img{
+
+    max-width:100%;
+
+    display:block;
+
+}
+
+/* ==========================
+   LINKS
+========================== */
+
+a{
+
+    transition:var(--transition);
+
+}
+
+/* ==========================
+   END
+========================== */
