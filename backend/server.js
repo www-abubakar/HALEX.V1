@@ -10,240 +10,211 @@ app.use(cors());
 app.use(express.json());
 
 
-app.get("/", (req, res) => {
-  res.send("StudyAI Backend is Running ✅");
+app.get("/", (req,res)=>{
+    res.send("StudyAI Backend is Running ✅");
 });
 
 
-// AI Tutor Chat
-app.post("/chat", async (req, res) => {
 
-  try {
-
-    const { message } = req.body;
-
+async function openRouterAI(messages){
 
     const response = await fetch(
-      "https://openrouter.ai/api/v1/chat/completions",
-      {
-        method: "POST",
+        "https://openrouter.ai/api/v1/chat/completions",
+        {
+            method:"POST",
 
-        headers: {
-          "Authorization": `Bearer ${process.env.OPENROUTER_API_KEY}`,
-          "Content-Type": "application/json",
-          "HTTP-Referer": "https://halex-v1.onrender.com",
-          "X-Title": "StudyAI"
-        },
+            headers:{
+                "Authorization":
+                `Bearer ${process.env.OPENROUTER_API_KEY}`,
 
-        body: JSON.stringify({
+                "Content-Type":"application/json",
 
-          model: "openrouter/auto",
+                "HTTP-Referer":
+                "https://halex-v1.onrender.com",
 
-          messages: [
-            {
-              role: "user",
-              content: message
-            }
-          ]
+                "X-Title":"StudyAI"
+            },
 
-        })
+            body:JSON.stringify({
 
-      }
+                model:"openrouter/auto",
+
+                messages:messages
+
+            })
+        }
     );
 
 
     const data = await response.json();
 
+console.log(JSON.stringify(data, null, 2));
+  
+    if(!response.ok){
 
-    res.json({
+        console.log("OpenRouter Error:",data);
 
-      reply:
-      data.choices[0].message.content
+        throw new Error(
+            data.error?.message || "AI Error"
+        );
 
-    });
+    }
 
 
-  } catch(error){
+if (!data.choices || !data.choices.length) {
+  throw new Error(JSON.stringify(data));
+}
 
-    console.error(error);
+return data.choices[0].message.content;
 
-    res.status(500).json({
-      error:"Server Error"
-    });
+}
 
-  }
+
+
+
+
+// ===============================
+// AI TUTOR CHAT
+// ===============================
+
+app.post("/chat",async(req,res)=>{
+
+try{
+
+
+const {message}=req.body;
+
+
+const reply = await openRouterAI([
+
+{
+role:"user",
+content:message
+}
+
+]);
+
+
+res.json({
+reply:reply
+});
+
+
+}catch(error){
+
+console.log(error);
+
+res.status(500).json({
+
+error:error.message
+
+});
+
+}
 
 });
 
 
 
 
-// Notes + PDF Summary
-app.post("/summarize", async (req,res)=>{
 
+// ===============================
+// NOTES SUMMARY
+// ===============================
+
+
+app.post("/summarize",async(req,res)=>{
 
 try{
 
 
-const { notes } = req.body;
+const {notes}=req.body;
 
 
-const response = await fetch(
-
-"https://openrouter.ai/api/v1/chat/completions",
+const summary = await openRouterAI([
 
 {
-
-method:"POST",
-
-headers:{
-
-"Authorization":
-`Bearer ${process.env.OPENROUTER_API_KEY}`,
-
-"Content-Type":"application/json"
-
-},
-
-body:JSON.stringify({
-
-model:"openrouter/auto",
-
-messages:[
-
-{
-
 role:"system",
-
 content:
-"You are an expert teacher. Summarize into simple bullet points."
-
+"You are an expert teacher. Summarize notes into simple bullet points."
 },
 
 {
-
 role:"user",
-
 content:notes
-
 }
 
-]
-
-})
-
-}
-
-);
-
-
-
-const data = await response.json();
-
+]);
 
 
 res.json({
 
-summary:
-data.choices[0].message.content
+summary:summary
 
 });
-
 
 
 }catch(error){
 
-
-console.error(error);
-
+console.log(error);
 
 res.status(500).json({
 
-error:"Server Error"
+error:error.message
 
 });
-
 
 }
 
-
 });
 
 
 
 
 
-// Quiz Generator
-app.post("/quiz", async(req,res)=>{
 
+// ===============================
+// QUIZ GENERATOR
+// ===============================
+
+
+app.post("/quiz",async(req,res)=>{
 
 try{
 
 
-const { topic } = req.body;
+const {topic}=req.body;
 
 
-const response = await fetch(
+const quiz = await openRouterAI([
 
-"https://openrouter.ai/api/v1/chat/completions",
 
 {
-
-method:"POST",
-
-headers:{
-
-"Authorization":
-`Bearer ${process.env.OPENROUTER_API_KEY}`,
-
-"Content-Type":"application/json"
-
-},
-
-body:JSON.stringify({
-
-model:"openrouter/auto",
-
-messages:[
-
-{
-
 role:"system",
 
 content:
 
-"Create exactly 10 multiple-choice questions with 4 options each. Mention correct answer after every question."
-
+"Create exactly 10 multiple choice questions. Each question must have 4 options and mention correct answer."
 },
 
-{
 
+{
 role:"user",
 
 content:
 
-`Generate a quiz about: ${topic}`
+`Generate quiz about ${topic}`
 
 }
 
-]
 
-})
-
-}
-
-);
-
-
-
-const data = await response.json();
+]);
 
 
 
 res.json({
 
-quiz:
-data.choices[0].message.content
+quiz:quiz
 
 });
 
@@ -252,12 +223,12 @@ data.choices[0].message.content
 }catch(error){
 
 
-console.error(error);
+console.log(error);
 
 
 res.status(500).json({
 
-error:"Server Error"
+error:error.message
 
 });
 
