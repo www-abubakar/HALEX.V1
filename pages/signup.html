@@ -11,7 +11,7 @@
 
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 
-  <link rel="stylesheet" href="../style.css">
+  <link rel="stylesheet" href="../css/signup.css">
 </head>
 
 <body>
@@ -19,6 +19,8 @@
   <div class="auth-container">
 
     <div class="auth-card">
+
+      <div class="logo">📚 StudyAI</div>
 
       <h1>Create Account 🚀</h1>
 
@@ -30,24 +32,28 @@
           id="name"
           type="text"
           placeholder="Full Name"
+          autocomplete="name"
           required>
 
         <input
           id="email"
           type="email"
           placeholder="Email Address"
+          autocomplete="email"
           required>
 
         <input
           id="password"
           type="password"
           placeholder="Password"
+          autocomplete="new-password"
           required>
 
         <input
           id="confirmPassword"
           type="password"
           placeholder="Confirm Password"
+          autocomplete="new-password"
           required>
 
         <button id="signupBtn" type="submit">
