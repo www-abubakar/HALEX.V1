@@ -12,14 +12,22 @@ app.use(express.json());
 
 const genAI = new GoogleGenerativeAI(process.env.GEMINI_API_KEY);
 
-app.get("/", (req, res) => {
-  res.send("StudyAI Backend is Running ✅");
+app.get("/test-ai", async (req, res) => {
+  try {
+    const reply = await geminiAI("Say Hello");
+    res.json({ success: true, reply });
+  } catch (error) {
+    res.status(500).json({
+      success: false,
+      error: error.message
+    });
+  }
 });
 
 async function geminiAI(prompt) {
   try {
     const model = genAI.getGenerativeModel({
-    model: "gemini-2.5-flash-lite"
+      model: "gemini-2.5-flash-lite"
     });
 
     const result = await model.generateContent(prompt);
