@@ -37,8 +37,9 @@ async function geminiAI(prompt) {
     return response.text();
 
   } catch (error) {
-    console.error("Gemini Error:", error);
-    throw new Error("AI Server Error");
+  console.error("Gemini Error:", error);
+
+  throw error;
   }
 }
 
